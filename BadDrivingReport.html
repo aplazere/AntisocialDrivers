@@ -1,0 +1,624 @@
+<!-- Index.html  -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" 
+          content="width=device-width,
+                   initial-scale=1.0">
+    <!-- Linking css file  -->
+    <link rel="stylesheet" href="C:\Users\Adam.Lazere\Documents\Style.css">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+    <title>Survey Form</title>
+</head>
+
+<body>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Creating the form container  -->
+    <div class="container">
+        <form  method="POST" id="myForm" action="https://script.google.com/macros/s/AKfycby-28XlM39vZFpEbAHYtHk7XEzz9YAw9U64wtNNvWXdEnk32_tuHVHZiT1t-rZusxQ4/exec">
+        <div id="titlebox">
+         <button class = "navigate" id="back"  type="button" style="left:0;">  << </button> <h1 style="font-size:48px;">Survey Form</h1> <button class = "navigate" id="next" type="button" style="right:0;">  >>  </button> 
+        <br>
+                
+
+        </div>
+        <!-- Contains error -->
+        <h4 id="errorText"></h4>
+        <div class="section" id="mandatory">
+            <p style="top:20; text-align:center"> some text describing the mission statement and how to use this survey</p>
+        <label for="Make" id="inputTitle">
+                Car Make: <span id="requiredMark">*</span>
+            </label><br>
+        <!-- Form element  -->
+        <input name="Make" type="text" maxlength="30"  list="carList" id="carSearchBox" name="carSearchBox" placeholder="search cars" autofocus autocomplete="on" required>
+        <datalist id="carList"></datalist>
+        
+        
+
+            <br>
+
+            <label for="model" id="inputTitle">
+                Model: 
+            </label><br>
+
+            
+            
+            <input type="text" 
+                   id="model" 
+                   name="Model">
+
+                 
+                 
+                 <label for="isViolation" id="inputTitle">Improper Driving <span id="requiredMark">*</span> </label>
+                    <input id="isViolation" style="opacity:0; display:block; position: absolute;pointer-events: none " required> 
+                    <br> <br>
+                   
+            <!-- 
+                    
+            <input name="Rutabega" type="checkbox" id="rutabega" name="rutabega">
+            <label for="rutabega"></label><br> 
+            
+            -->
+
+            <!-- violations to add
+             shoulder driving/line cutting
+             emergency lane usage
+             gta driving (find better word)
+              -->
+
+            <input name="Speeding" type="checkbox" id="speeding" name="speeding">
+            <label for="speeding" class="tooltip">Speeding <span class="tooltiptext">driving faster than sorrounding traffic</span></label><br>
+
+            <input name="Merge" type="checkbox" id="merge" name="merge">
+            <label for="merge" class="tooltip"> Merging unsafely <span class="tooltiptext"> merging without signal, too close to other cars</span></label><br>
+
+            <input name="Tailgate" type="checkbox" id="tailgate" name="tailgate">
+            <label for="tailgate" class="tooltip">Tailgating <span class="tooltiptext">riding less than 1 car length away from the following car</span></label><br>
+
+            <input name="Violation" type="checkbox" id="violation" name="violation">
+            <label for="violation" class="tooltip">Traffic Violations <span class="tooltiptext"> running reds/stop signs, failure to yield, turning from wrong lane</span> </label><br>
+
+            <input name="Distracted" type="checkbox" id="distracted" name="distracted">
+            <label for="distracted" class="tooltip">Distracted driving <span class="tooltiptext"> occupying hands/eyes for a sustained period when traffic is flowing </span> </label><br>
+
+            <input name="Shoulder" type="checkbox" id="shoulder" name="shoulder">
+            <label for="shoulder">Driving on the shoulder</label><br>
+
+             <input name="Weaving" type="checkbox" id="weaving" name="weaving">
+            <label for="weaving">Weaving rapidly between lanes and around cars</label><br> 
+
+            <input name="DoublePark" type="checkbox" id="doublePark" name="doublePark">
+            <label for="doublePark">Double Parking</label><br>
+       
+       
+             </div>
+                   <br>
+            <div class="section" style="display: none">
+            <label id="inputTitle">
+                state:
+            </label>
+            <select name="State" id="States">
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA">California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District Of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY">Wyoming</option>
+            </select>
+            <br> <br>
+            <label id="inputTitle">
+               Plate Type
+            </label>
+            <br><br>
+
+            <input name="Passenger" type="checkbox" id="passenger" name="passenger">
+            <label for="passenger">Passenger Vehicle (standard) </label><br>
+
+            <input name="Taxi" type="checkbox" id="taxi" name="taxi">
+            <label for="taxi">Taxi & Limousine  </label><br>
+
+            <input name="Commercial" type="checkbox" id="commercial" name="commercial">
+            <label for="commerical">Commercial Vehicle </label><br>
+            
+
+            <input Name="City Vehicle" type="checkbox" id="govtNYC" name="govtNYC">
+            <label for="govtNYC">City of New York (City Worker) </label><br>
+
+            <input name="Motorcycle" type="checkbox" id="motorcycle" name="motorcycle">
+            <label for="motorcycle">Motorcycle </label><br>
+
+            <input name="Police" type="checkbox" id="cops" name="cops">
+            <label for="cops">Police (local/state/federal)  </label><br>
+
+            <input name="Vanity" type="checkbox" id="vanity" name="vanity">
+            <label for="vanity">Vanity Plate  </label><br>
+
+            <input name="Professional" type="checkbox" id="pro" name="pro">
+            <label for="pro" class="tooltip">Profesional Plates <span class="tooltiptext"> Doctor, Registered Nurse, Architect etc. </span> </label><br>
+
+            <input name="Dealer" type="checkbox" id="dealer" name="dealer">
+            <label for="dealer">Car Dealer </label><br>
+
+            <input type="checkbox" id="other" name="other" > <input id="otherText" name="Other Text" type="text" placeholder="Other (fill in here)">
+            <br>
+            </div>
+            <div class="section" style="display: none">
+            <label id="inputTitle">Car Description</label> <br> <br>
+
+            <label>Car Color: </label> <select name="Car Color" id="carColor">
+                <option>White</option>
+                <option>Black</option>
+                <option>Silver</option>
+                <option>Gray</option>
+                <option>Blue</option>
+                <option>Red</option>
+                <option>Green</option>
+                <option>Brown/Beige</option>
+                <option>Orange</option>
+                <option>Gold</option>
+                <option>Purple</option>
+                <option>Yellow</option>
+                <option>Pink</option>
+
+            </select>
+            <br>
+
+            <input name="Modded" type="checkbox" id="modded" name="modded">
+            <label for="modded">Custom Paint or Chassis </label><br>
+
+            <input name="Damaged" type="checkbox" id="damaged" name="damaged">
+            <label for="damaged">External Damage </label><br>
+
+            <input name="Company" type="checkbox" id="company" name="company">
+            <label for="company">Company Vehicle </label><br>
+            </div>
+           
+            <div class="section" style="display: none">
+
+            <label id="inputTitle">Time of Indicent</label>
+            <select id="hourbox"><option disabled selected value> </option></select> <select id="minutebox"><option disabled selected value></option></select>  <select id="mbox"><option disabled selected value></option> <option>AM</option><option>PM</option></select>
+            <input type="hidden" name="Time" id="time">
+            <br><br>
+            <div id="wrapper"> 
+            <label id="inputTitle" style="margin: 0 px; padding: 0px;" onClick="showMap()">  Location  <span style=" position: relative;display: inline-block; font-size:20px; padding-top:5px" id="arrow" >&#9660</span></label>
+            <div id="map"></div>
+            <script type="text/javascript" src="http://cdn.leafletjs.com/leaflet-0.4/leaflet.js"></script>
+            
+            <input type="hidden" name="ZIP code" id="ZIP">
+            <h2 id="reportingZIP" style="display: none"></h2>
+            </div>
+            
+            </div>
+            <script>
+                function makenew(value1, value2) {
+                        var option = document.createElement('option');
+                        option.text = value2;
+                        option.value = value1;
+                        return option;
+                }
+
+                var hourSelectionBox = document.getElementById('hourbox');
+                for(var j = 1; j <= 12; j++){
+                        hourSelectionBox.add(makenew(j, j));
+                }
+
+                var minutesSelectionBox = document.getElementById('minutebox');
+                for(var j = 0; j < 60; j += 15) {
+                        minutesSelectionBox.add(makenew(j, j));
+                }
+
+                
+                addEventListener("click", (event) => { })
+                onclick = (event) => {
+                    var hour=document.getElementById('hourbox').value;
+                    var minute=document.getElementById('minutebox').value;
+                    var m =document.getElementById('mbox').value;
+                    document.getElementById("time").value='=TIMEVALUE("'+hour+':'+minute+m+'")'
+                    
+                }
+            </script>
+            <script >
+                    document
+                .getElementById("surveyForm")
+                .addEventListener(
+                    "submit",
+                    function (event) {
+                        // PreventDefault() is used to avoid
+                        // Refreshing of browser while submit
+                        event.preventDefault();
+
+                        let nameField =
+                            document.getElementById(
+                                "name"
+                            );
+                        let ageField =
+                            document.getElementById(
+                                "age"
+                            );
+                        let errorText =
+                            document.getElementById(
+                                "errorText"
+                            );
+
+                        let name = nameField.value;
+                        let age = ageField.value;
+
+                        // Creating a regular expression for 
+                        // Name field
+                        let Regex = /^[A-Za-z ]+$/;
+
+                        // If name does not matches the 
+                        // Regular expression
+                    
+
+                        // Adding success message and styles
+                        errorText.innerHTML =
+                            "Submitted Successfully";
+                        errorText.classList.add(
+                            "successText"
+                        );
+
+                        const formData =
+                            new FormData(
+                                event.target
+                            );
+                        const formValues = {};
+
+                        // Storing each values in the object
+                        formData.forEach(
+                            (value, key) => {
+                                formValues[key] =
+                                    value;
+                            }
+                        );
+
+                        // Calling convert function
+                        const csvContent =
+                            convertToCSV(
+                                formValues
+                            );
+                        const blob = new Blob(
+                            [csvContent],
+                            { type: "text/csv" }
+                        );
+
+                        // Creating a link for downloading
+                        // Excel sheet
+                        const link =
+                            document.createElement(
+                                "a"
+                            );
+                        link.href =
+                            window.URL.createObjectURL(
+                                blob
+                            );
+                        link.download =
+                            "survey_data.csv";
+                        link.click();
+
+                        // Reseting the form after certain
+                        // Timeout 2000ms => 2s
+                        setTimeout(
+                            document
+                                .getElementById(
+                                    "surveyForm"
+                                )
+                                .reset(),
+                            2000
+                        );
+                    }
+                );
+
+                
+            
+
+            // Function to convert object to csv
+            function convertToCSV(objArr) {
+                const array =
+                    typeof objArr !== "object"
+                        ? JSON.parse(objArr)
+                        : objArr;
+                let result = "";
+
+                // Add commas to make it as csv
+                const header =
+                    Object.keys(array).join(",") +
+                    "\n";
+                result += header;
+
+                for (const item in array) {
+                    if (
+                        array.hasOwnProperty(item)
+                    ) {
+                        result += array[item] + ",";
+                    }
+                }
+                result = result.slice(0, -1);
+                result += "\n";
+
+                return result;
+            }
+
+            function getCars(Makes) {
+            var Makes = [
+            "Abarth",
+            "Alfa Romeo",
+            "Aston Martin",
+            "Audi",
+            "Bentley",
+            "BMW",
+            "Bugatti",
+            "Cadillac",
+            "Chevrolet",
+            "Chrysler",
+            "Citroën",
+            "Dacia",
+            "Daewoo",
+            "Daihatsu",
+            "Dodge",
+            "Donkervoort",
+            "DS",
+            "Ferrari",
+            "Fiat",
+            "Fisker",
+            "Ford",
+            "GMC",
+            "Honda",
+            "Hummer",
+            "Hyundai",
+            "Infiniti",
+            "Iveco",
+            "Jaguar",
+            "Jeep",
+            "Kia",
+            "KTM",
+            "Lada",
+            "Lamborghini",
+            "Lancia",
+            "Land Rover",
+            "Landwind",
+            "Lexus",
+            "Lotus",
+            "Maserati",
+            "Maybach",
+            "Mazda",
+            "McLaren",
+            "Mercedes-Benz",
+            "MG",
+            "Mini",
+            "Mitsubishi",
+            "Morgan",
+            "Nissan",
+            "Opel",
+            "Peugeot",
+            "Porsche",
+            "Renault",
+            "Rolls-Royce",
+            "Rover",
+            "Saab",
+            "Seat",
+            "Skoda",
+            "Smart",
+            "SsangYong",
+            "Subaru",
+            "Suzuki",
+            "Tesla",
+            "Toyota",
+            "Volkswagen",
+            "Volvo"
+                ]
+            var carList = document.getElementById("carList");
+                //populate the cars datalist
+                Makes.forEach(function(item) {
+                        var carsOption = document.createElement('option');
+                        
+                        carsOption.value=item
+                        carList.appendChild(carsOption)
+                    });
+                
+            }   
+                </script>
+                <script type="text/javascript">
+            var map = L.map('map').setView([40.703312, -73.97968], 10);
+            //L.tileLayer('http://b.tilecloudmade.com/e7b61e61295a44a5b319ca0bd3150890/997/256/18/149531/108306.png', {
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery Â© <a href="http://cloudmade.com">CloudMade</a>',
+                maxZoom: 18,
+                minZoom: 11,
+                bounds: L.latLngBounds([39.3682, -75.9374], [42.0329, -71.7187])
+            }).addTo(map);
+
+            map.setMaxBounds(map.getBounds())
+
+           function fetchJSON(url) {
+            return fetch(url)
+                .then(function(response) {
+                return response.json();
+                });
+            }
+
+            function submitZIP(zip){
+                document.getElementById("ZIP").value = zip;
+                document.getElementById("map").style.display='none';
+                document.getElementById("arrow").style.rotate="180deg";
+                document.getElementById("reportingZIP").innerHTML= "The incident reported occured in: " + zip;
+                document.getElementById("reportingZIP").style.display='block';
+                map.closePopup();
+
+            }
+            function showMap(){
+                document.getElementById("map").style.display='block'
+                document.getElementById("arrow").style.rotate="0deg"
+                document.getElementById("reportingZIP").style.display='none';
+            }
+
+            function redirect(){
+                var goodboy=0;
+                document.getElementById("myForm").querySelectorAll("div#mandatory > input[type='checkbox']").forEach(function(i){
+                    if (i.checked == true){
+                        goodboy++;
+                    }
+
+                })
+
+                 if (goodboy > 0){
+                    document.getElementById("isViolation").value="eeyup"
+                 }
+                
+                
+                var badboy=0;
+                document.getElementById("myForm").querySelectorAll("[required]").forEach(function (i){
+
+                
+                    if  (i.value == '') {
+                        badboy++
+
+                    }
+                })
+                
+                 
+
+                    if (badboy == 0 & goodboy > 0){
+                        window.location.href="https:\\www.google.com"
+                    } else {
+                        sectionElements.hide()
+                        sectionIndex = 0;
+                        $(sectionElements[sectionIndex]).show();
+                        sectionLimit();
+                    }
+                }
+               
+           
+            
+
+            const sectionElements = $('.section');
+            let sectionIndex = 0;
+           
+              
+                
+            
+
+            
+                $('#next').click(function(){
+                sectionIndex++;
+                sectionElements.hide();
+                $(sectionElements[sectionIndex]).show();
+                sectionLimit();
+                });
+
+                $('#back').click(function(){
+                sectionIndex--;
+                sectionElements.hide();
+                $(sectionElements[sectionIndex]).show();
+                sectionLimit();
+                });
+
+                 function sectionLimit(){
+                    if (sectionIndex == 0){
+                        document.getElementById("back").style.display='none';
+                    } else if (sectionIndex == sectionElements.length-1){
+                        document.getElementById("next").style.display='none';
+                    }else {
+                        document.getElementById("back").style.display='block';
+                        document.getElementById("next").style.display='block';
+                    }
+                    map.invalidateSize()
+                    map.setMaxBounds(map.getBounds())
+
+                 }
+             
+            
+            var myPallete=['#0049ff', '#4e7ef8', '#73aee9', '#9edccd', '#fbff7c', '#c2c588', '#d3899e', '#c948b6', '#9000d7'];
+            var data = fetchJSON('https://data.cityofnewyork.us/resource/pri4-ifjk.geojson').then(function(data) { 
+                var layerGroup = L.geoJSON(data, {
+                    onEachFeature: function (feature, layer) {
+                        layer.bindPopup('<h1>'+feature.properties.modzcta+'<br><button type="button" onClick="submitZIP('+feature.properties.modzcta+')">Behavior occured in this ZIP code</button>');
+                        var myFillColor= myPallete[feature.properties.modzcta.substr(4)]
+                        layer.setStyle({
+                            fillColor: myFillColor,
+                            fillOpacity: 0.2,
+                            weight: 1,
+                            color: 'black'
+                        })
+                    }
+                }).addTo(map);
+
+                    // do what you want to do with `data` here...
+                    // data.features.forEach(function(feature) {
+                    //         L.geoJSON(feature).addTo(map)
+                    //         L.geoJSON(feature, {
+                    //             onEachFeature: onEachFeature
+                    //         }).addTo(map)
+                    //     });
+
+            });
+
+            
+
+            </script>
+            <script>window.onload=getCars;</script>
+
+
+            <br>
+
+            <button onClick="redirect()" type="submit">
+                Submit
+            </button>
+            
+        </form>
+    </div>
+
+    <!-- linking javascript file  -->
+</body>
+
+</html>
