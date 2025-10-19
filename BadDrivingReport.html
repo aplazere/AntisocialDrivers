@@ -60,6 +60,28 @@
           visibility: visible;
         }
         
+        #gateway {
+            display: block;
+            border-style: solid;
+            border-width: 3px ;
+            background-color:white;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50%;
+            border-radius: 5px;
+            margin: 5px;
+            z-index:1;
+            
+        }
+        .gatewayTxt{
+            font-size:18px;
+            margin-left: 2%;
+            font-weight: bold;
+        }
+        
+        
         h1 {
             text-align: center;
         }
@@ -115,7 +137,9 @@
         
         
         button {
-            width: 100%;
+            position:relative;
+            left:5%;   
+            width: 90%;
             padding: 10px;
             background-color: #4caf50;
             color: white;
@@ -162,6 +186,7 @@
                     height: 700px;
                     
                     margin: auto;
+                    z-index:1
                 }
         #wrapper{
             margin-left:-20px;
@@ -221,6 +246,19 @@
         
         #requiredMark{
             color:red
+        }
+
+        #closer{
+            all: initial;
+            font-family: "Lucida Sans Unicode", "Arial Unicode MS";
+            font-weight: bold;
+            font-size: 24px;
+            vertical-align: middle;
+            position:fixed;
+            top: 0%;
+            right: 1%;
+            cursor: pointer;
+            
         }
         
     </style>
@@ -373,7 +411,7 @@
                Plate Type
             </label>
             <br><br>
-
+            <div id="Plate">
             <input name="Passenger" type="checkbox" id="passenger" name="passenger">
             <label for="passenger">Passenger Vehicle (standard) </label><br>
 
@@ -403,6 +441,7 @@
             <label for="dealer">Car Dealer </label><br>
 
             <input type="checkbox" id="other" name="other" > <input id="otherText" name="Other Text" type="text" placeholder="Other (fill in here)">
+             </div>
             <br>
             </div>
             <div class="section" style="display: none">
@@ -478,130 +517,15 @@
                     var minute=document.getElementById('minutebox').value;
                     var m =document.getElementById('mbox').value;
                     document.getElementById("time").value='=TIMEVALUE("'+hour+':'+minute+m+'")'
-                    
+                
                 }
+
+                document.getElementById("myCheckbox").addEventListener("click", function(event){
+                event.preventDefault()
+                }); 
             </script>
             <script >
-                    document
-                .getElementById("surveyForm")
-                .addEventListener(
-                    "submit",
-                    function (event) {
-                        // PreventDefault() is used to avoid
-                        // Refreshing of browser while submit
-                        event.preventDefault();
-
-                        let nameField =
-                            document.getElementById(
-                                "name"
-                            );
-                        let ageField =
-                            document.getElementById(
-                                "age"
-                            );
-                        let errorText =
-                            document.getElementById(
-                                "errorText"
-                            );
-
-                        let name = nameField.value;
-                        let age = ageField.value;
-
-                        // Creating a regular expression for 
-                        // Name field
-                        let Regex = /^[A-Za-z ]+$/;
-
-                        // If name does not matches the 
-                        // Regular expression
-                    
-
-                        // Adding success message and styles
-                        errorText.innerHTML =
-                            "Submitted Successfully";
-                        errorText.classList.add(
-                            "successText"
-                        );
-
-                        const formData =
-                            new FormData(
-                                event.target
-                            );
-                        const formValues = {};
-
-                        // Storing each values in the object
-                        formData.forEach(
-                            (value, key) => {
-                                formValues[key] =
-                                    value;
-                            }
-                        );
-
-                        // Calling convert function
-                        const csvContent =
-                            convertToCSV(
-                                formValues
-                            );
-                        const blob = new Blob(
-                            [csvContent],
-                            { type: "text/csv" }
-                        );
-
-                        // Creating a link for downloading
-                        // Excel sheet
-                        const link =
-                            document.createElement(
-                                "a"
-                            );
-                        link.href =
-                            window.URL.createObjectURL(
-                                blob
-                            );
-                        link.download =
-                            "survey_data.csv";
-                        link.click();
-
-                        // Reseting the form after certain
-                        // Timeout 2000ms => 2s
-                        setTimeout(
-                            document
-                                .getElementById(
-                                    "surveyForm"
-                                )
-                                .reset(),
-                            2000
-                        );
-                    }
-                );
-
-                
-            
-
-            // Function to convert object to csv
-            function convertToCSV(objArr) {
-                const array =
-                    typeof objArr !== "object"
-                        ? JSON.parse(objArr)
-                        : objArr;
-                let result = "";
-
-                // Add commas to make it as csv
-                const header =
-                    Object.keys(array).join(",") +
-                    "\n";
-                result += header;
-
-                for (const item in array) {
-                    if (
-                        array.hasOwnProperty(item)
-                    ) {
-                        result += array[item] + ",";
-                    }
-                }
-                result = result.slice(0, -1);
-                result += "\n";
-
-                return result;
-            }
+                 
 
             function getCars(Makes) {
             var Makes = [
@@ -716,41 +640,7 @@
                 document.getElementById("reportingZIP").style.display='none';
             }
 
-            function redirect(){
-                var goodboy=0;
-                document.getElementById("myForm").querySelectorAll("div#mandatory > input[type='checkbox']").forEach(function(i){
-                    if (i.checked == true){
-                        goodboy++;
-                    }
-
-                })
-
-                 if (goodboy > 0){
-                    document.getElementById("isViolation").value="eeyup"
-                 }
-                
-                
-                var badboy=0;
-                document.getElementById("myForm").querySelectorAll("[required]").forEach(function (i){
-
-                
-                    if  (i.value == '') {
-                        badboy++
-
-                    }
-                })
-                
-                 
-
-                    if (badboy == 0 & goodboy > 0){
-                        window.location.href="https:\\www.google.com"
-                    } else {
-                        sectionElements.hide()
-                        sectionIndex = 0;
-                        $(sectionElements[sectionIndex]).show();
-                        sectionLimit();
-                    }
-                }
+        
                
            
             
@@ -817,6 +707,100 @@
 
             });
 
+            function togglediv(id) {
+            document.getElementById("isViolation").value="";
+            var form=document.getElementById("myForm")
+
+            var goodboy=0;
+            document.getElementById("myForm").querySelectorAll("div#mandatory > input[type='checkbox']").forEach(function(i){
+                if (i.checked == true){
+                    goodboy++;
+                }
+
+            })
+
+                if (goodboy > 0){
+                document.getElementById("isViolation").value="eeyup"
+                }
+            
+            var check=form.reportValidity();
+            
+            
+            
+            
+            if (check==true){
+            
+            var div = document.getElementById(id);
+            div.style.display = div.style.display == "none" ? "block" : "none";
+            document.getElementById('makeVal').innerHTML="Make: " + document.getElementById('carSearchBox').value
+            document.getElementById('modelVal').innerHTML="model: " + document.getElementById('model').value
+            document.getElementById('stateVal').innerHTML="License State: " + document.getElementById('States').value
+            document.getElementById('colorVal').innerHTML="Color: " + document.getElementById('carColor').value
+             temptime=document.getElementById('time').value.replace('=TIMEVALUE("','');
+             temptime= temptime.substring(0, temptime.length - 2)
+
+            document.getElementById('timeVal').innerHTML="Time of Occurrence: " + temptime
+            document.getElementById('locationVal').innerHTML="Location of Occurrence: " + document.getElementById('ZIP').value
+
+
+
+
+
+             // collect checkboxes
+            var violations="";
+             document.getElementById("myForm").querySelectorAll("div#mandatory > input[type='checkbox']").forEach(function(i){
+                if (i.checked == true){
+                   violations=violations +" " + i.labels[0].innerText + ",";
+
+                }
+            
+                
+
+
+             })
+             violations = violations.substring(0, violations.length - 1)
+            document.getElementById('violationVal').innerHTML = "Violations: " + violations
+
+             var plate=""
+            document.getElementById("myForm").querySelectorAll("div#Plate > input[type='checkbox']").forEach(function(i){
+                if (i.checked == true){
+                    if (i.name == 'other'){
+                        plate=plate + " " + document.getElementById("otherText").value + ","
+
+                    }else{
+                        plate=plate +" " + i.labels[0].innerText + ",";
+
+                    }
+                   
+
+                }
+            
+            
+                
+
+
+             })
+             plate= plate.substring(0, plate.length - 1)
+             document.getElementById('plateVal').innerHTML = "Plate Info: " + plate;
+             
+             
+
+
+             //generate a short paragraph someday (seems like a lot of work lol)
+             
+            
+        } else {
+            const sectionElements = $('.section')
+            sectionElements.hide()
+            $(sectionElements[0]).show();
+             sectionLimit();
+             form.reportValidity()
+             
+
+        }
+    }
+        
+
             
 
             </script>
@@ -824,10 +808,32 @@
 
 
             <br>
+            <button onClick="togglediv('gateway')" type="button">Submit</button>
 
-            <button onClick="redirect()" type="submit">
+            <div id="gateway" style="display:none">
+            <span id="closer" onClick="togglediv('gateway')"> &#10006; </span>
+            <br><br>
+            <span class="gatewayTxt" id="makeVal"></span>
+            <br><br>
+            <span class="gatewayTxt" id="modelVal"></span>
+            <br><br>
+            <span class="gatewayTxt" id="violationVal"></span>
+            <br><br>
+            <span class="gatewayTxt" id="stateVal"></span>
+            <br><br>
+            <span class="gatewayTxt" id="plateVal"></span>
+            <br><br>
+            <span class="gatewayTxt" id="colorVal"></span>
+            <br><br>
+            <span class="gatewayTxt" id=timeVal></span>
+            <br><br>
+            <span class="gatewayTxt" id="locationVal"></span>
+            <br><br>
+            <button  type="submit">
                 Submit
             </button>
+            <br><br>
+            </div>
             
         </form>
     </div>
@@ -837,6 +843,9 @@
 
 
 </html>
+
+
+
 
 
 
