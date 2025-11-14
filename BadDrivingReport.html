@@ -273,7 +273,7 @@
     <div class="container">
         <form  method="POST" id="myForm" action="https://script.google.com/macros/s/AKfycbwwGBes1_rfE0ymFxfcYcfeGoSa6xL6Y0FDteIAwrUUk5SWtpi-LuWzAbVNGHLTYu-r/exec">
         <div id="titlebox">
-         <button class = "navigate" id="back"  type="button" style="left:0;">  << </button> <h1 style="font-size:48px; max-width:55%">Survey Form</h1> <button class = "navigate" id="next" type="button" style="right:0;">  >>  </button> 
+         <button class = "navigate" id="back"  type="button" style="left:0;display:none">  << </button> <h1 style="font-size:48px; max-width:55%">Survey Form</h1> <button class = "navigate" id="next" type="button" style="right:0;">  >>  </button> 
         <br>
                 
 
@@ -803,6 +803,9 @@
             $(sectionElements[0]).show();
              sectionLimit();
              form.reportValidity()
+             sectionIndex=0;
+             document.getElementById("back").style.display='none';
+             document.getElementById("next").style.display='block';
              
 
         }
@@ -851,3 +854,4 @@
 
 
 </html>
+
