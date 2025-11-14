@@ -323,19 +323,21 @@
               -->
 
             <input name="Speeding" type="checkbox" id="speeding" name="speeding">
-            <label for="speeding" class="tooltip">Speeding <span class="tooltiptext">driving faster than sorrounding traffic</span></label><br>
+            <label for="speeding" class="tooltip">Speeding <span class="tooltiptext"><span hidden>~</span>driving faster than sorrounding traffic</span></label><br>
 
             <input name="Merge" type="checkbox" id="merge" name="merge">
-            <label for="merge" class="tooltip"> Merging unsafely <span class="tooltiptext"> merging without signal, too close to other cars</span></label><br>
+            <label for="merge" class="tooltip"> Merging unsafely <span class="tooltiptext"><span hidden>~</span>merging without signal, too close to other cars</span></label><br>
 
             <input name="Tailgate" type="checkbox" id="tailgate" name="tailgate">
-            <label for="tailgate" class="tooltip">Tailgating <span class="tooltiptext">riding less than 1 car length away from the following car</span></label><br>
+            <label for="tailgate" class="tooltip">Tailgating <span class="tooltiptext"><span hidden>~</span>riding less than 1 car length away from the following car</span></label><br>
 
             <input name="Violation" type="checkbox" id="violation" name="violation">
-            <label for="violation" class="tooltip">Traffic Violations <span class="tooltiptext"> running reds/stop signs, failure to yield, turning from wrong lane</span> </label><br>
+            <label for="violation" class="tooltip">Traffic Violations <span class="tooltiptext"><span hidden>~</span>running reds/stop signs, failure to yield, turning from wrong lane</span> </label><br>
 
             <input name="Distracted" type="checkbox" id="distracted" name="distracted">
-            <label for="distracted" class="tooltip">Distracted driving <span class="tooltiptext"> occupying hands/eyes for a sustained period when traffic is flowing </span> </label><br>
+            <label for="distracted" class="tooltip">Distracted driving <span class="tooltiptext"><span hidden>~</span>occupying hands/eyes for a sustained period when traffic is flowing </span> </label><br>
+            <input name="RoadRage" type="checkbox" id="roadRage" name="roadRage">
+            <label for="roadRage" class="tooltip">Road Rage <span class="tooltiptext"><span hidden>~</span>shouting, honking aggressively, tailgating or any other antisocial behaviors in retaliaton to a perceived slight </span></label><br>
 
             <input name="Shoulder" type="checkbox" id="shoulder" name="shoulder">
             <label for="shoulder">Driving on the shoulder</label><br>
@@ -751,7 +753,12 @@
             var violations="";
              document.getElementById("myForm").querySelectorAll("div#mandatory > input[type='checkbox']").forEach(function(i){
                 if (i.checked == true){
-                   violations=violations +" " + i.labels[0].innerText + ",";
+                   temptext=i.labels[0].innerText
+                   if (temptext.includes("~")){
+                    temptext=temptext.substring(0,temptext.indexOf("~")-1)
+
+                   }
+                   violations=violations +" " + temptext + ",";
 
                 }
             
@@ -844,16 +851,3 @@
 
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
