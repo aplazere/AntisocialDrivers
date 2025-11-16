@@ -482,7 +482,7 @@
             <div class="section" style="display: none">
 
             <label id="inputTitle">Time of Indicent</label>
-            <select id="hourbox"><option disabled selected value> </option></select> <select id="minutebox"><option disabled selected value></option></select>  <select id="mbox"><option disabled selected value></option> <option>AM</option><option>PM</option></select>
+            <select id="hourbox"><option disabled selected value> </option></select> <select id="minutebox"><option disabled selected value></option><option>00</option></select>  <select id="mbox"><option disabled selected value></option> <option>AM</option><option>PM</option></select>
             <input type="hidden" name="Time" id="time">
             <br><br>
             <div id="wrapper"> 
@@ -509,7 +509,7 @@
                 }
 
                 var minutesSelectionBox = document.getElementById('minutebox');
-                for(var j = 00; j < 60; j += 15) {
+                for(var j = 15; j < 60; j += 15) {
                         minutesSelectionBox.add(makenew(j, j));
                 }
 
@@ -854,5 +854,6 @@
 
 
 </html>
+
 
 
